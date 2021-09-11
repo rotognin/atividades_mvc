@@ -1,0 +1,24 @@
+Banco: atividades_db
+
+Usuários - usuarios_tb
+    - usuID
+    - usuNome
+    - usuLogin
+    - usuSenha - sha1
+    - usuSituacao - 0: Trocar a senha, 1 - Liberado, 2 - Bloqueado, 3 - Inativo
+
+Lista de Atividades - atividades_tb
+    - atvID
+    - atvUsuID
+    - atvNome
+    - atvDescricao
+    - atvInativo - 0 - Ativo, 1 - Inativo
+    - atvStatus - 0 - Parado, 1 - Iniciado
+
+Horários das atividades - horarios_tb
+    - horID
+    - horAtvID - ID da atividade
+    - horDataIni
+    - horHoraIni
+    - horDataFim - Esses campos vazios indicam que
+    - horHoraFim - a atividade está iniciada
