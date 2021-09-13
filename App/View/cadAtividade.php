@@ -36,7 +36,7 @@ $_SESSION['mensagem'] = '';
     <div class="w3-container w3-card-4 w3-margin">
         <h3><?php echo verdade($novo, 'Nova ', 'Editar '); ?>Atividade</h3>
         <a class="w3-button w3-blue" href="principal.php?action=menu">Início</a>
-        <a class="w3-button w3-blue" href="principal.php?action=atividades">Atividades</a>
+        <a class="w3-button w3-blue" href="principal.php?action=atividades">Lista de Atividades</a>
         <br><br>
     </div>
     <div class="w3-container w3-card-4 w3-margin">
@@ -52,13 +52,13 @@ $_SESSION['mensagem'] = '';
                 <label for="atvNome">Nome:</label>
                 <input type="text" id="atvNome" 
                        name="atvNome" value="<?php echo $atividade['atvNome']; ?>" autofocus required 
-                       size="100" style="text-transform:uppercase" maxlength="100">
+                       size="50" style="text-transform:uppercase" maxlength="100">
                 <br><br>
                 <!-- Descrição -->
                 <label for="atvDescricao">Descrição:</label>
                 <input type="text" id="atvDescricao" 
                        name="atvDescricao" value="<?php echo $atividade['atvDescricao']; ?>" required 
-                       style="text-transform:uppercase">
+                       style="text-transform:uppercase" size="100">
                 <br><br>
                 <!-- Situação -->
                 <p>Situação:

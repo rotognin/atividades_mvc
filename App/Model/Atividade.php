@@ -29,7 +29,7 @@ class Atividade
             return false;
         }
 
-        if ($veiculo['atvDescricao'] == ''){
+        if ($atividade['atvDescricao'] == ''){
             $_SESSION['mensagem'] = 'A Descrição da atividade deve ser informada.';
             return false;
         }
@@ -64,7 +64,7 @@ class Atividade
     {
         $sql = 'SELECT * FROM atividades_tb WHERE atvID = :atvID';
         $conn = Conexao::getConexao()->prepare($sql);
-        $conn->bindValue('atvID', $veiID, \PDO::PARAM_INT);
+        $conn->bindValue('atvID', $atvID, \PDO::PARAM_INT);
         $conn->execute();
         $result = $conn->fetchAll();
 

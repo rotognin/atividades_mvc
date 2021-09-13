@@ -4,7 +4,7 @@ namespace App\View;
 
 use App\Model as Model;
 
-$atividadesUsu = Model\Atividade::carregarAtividades($usuID);
+$atividadesUsu = Model\Atividade::carregar($usuID);
 
 if (!isset($_SESSION['mensagem']))
 {
@@ -21,7 +21,7 @@ $_SESSION['mensagem'] = '';
 <?php include 'html' . DIRECTORY_SEPARATOR . 'head.php'; ?>
 <body>
     <div class="w3-container w3-card-4">
-        <h3>Atividadess</h3>
+        <h3>Lista de Atividades</h3>
         <a class="w3-button w3-blue" href="principal.php?action=menu">Início</a>
         <a class="w3-button w3-blue" href="principal.php?control=atividade&action=cadAtividade">Nova</a>
         <br><br>
