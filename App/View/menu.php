@@ -40,6 +40,14 @@ $atividadesAtivas = Model\Atividade::carregar($_SESSION['usuID'], true);
                     }
 
                     echo '</td>';
+
+                    /**
+                     * Aqui irei colocar os botões para iniciar ou parar a atividade.
+                     * Falta importar o jQuery para fazer esse controle usando Ajax, onde
+                     * apenas algumas informações da tela serão alteradas quando uma atividade
+                     * for iniciada ou parada.
+                     */
+
                     echo '<td>';
                     echo '<form method="post" action="principal.php?control=atividade&action=cadAtividade">';
                         echo '<input type="hidden" name="atvID" value="' . $atividade['atvID'] . '">';
@@ -54,4 +62,3 @@ $atividadesAtivas = Model\Atividade::carregar($_SESSION['usuID'], true);
     </div>
 </body>
 </html>
-

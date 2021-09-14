@@ -125,6 +125,20 @@ class Atividade
         ));
     }
 
+    public static function alterarStatus(int $atvID, int $atvStatus)
+    {
+        if ($atvID == 0) {
+            return false;
+        }
+
+        $sql = 'UPDATE atividades_tb SET atvStatus = :atvStatus ' .
+               'WHERE atvID = :atvID';
+        $conn = Conexao::getConexao()->prepare($sql);
+        $conn->bindValue('atvStatus', $atvStatus, \PDO::PARAM_INT);
+        $conn->bindValue('atvID', $atvID, \PDO::PARAM_INT);
+        return $conn->execute();
+    }
+
     public static function getSituacao(int $atvInativo)
     {
         $situacao = '';

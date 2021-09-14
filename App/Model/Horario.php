@@ -42,7 +42,10 @@ class Horario
 
         // Ao mesmo tempo que uma atividade é iniciada, deverá alterar
         // o status dela para aberta
-        Atividade::alterarStatus($horario['horAtvID'], 1);
+        if (!Atividade::alterarStatus($horario['horAtvID'], INICIADO)) {
+            $_SESSION['mensagem'] = 'Não foi possível alterar o status da Atividade';
+            return false;
+        }
 
         $sql = 'INSERT INTO horarios_tb (' .
                 'horAtvID, horDataIni, horHoraIni) ' .
@@ -59,7 +62,10 @@ class Horario
     {
         // Quando uma atividade for finalizada, deverá alterar
         // o status dela para fechada
-        Atividade::alterarStatus($horario['horAtvID'], 0);
+        if (!Atividade::alterarStatus($horario['horAtvID'], PARADO)) {
+            $_SESSION['mensagem'] = 'Não foi possível alterar o status da Atividade.';
+            return false;
+        }
 
         $sql = 'UPDATE horarios_tb SET ' .
                 'horDataFim = :horDataFim, horHoraFim = :horHoraFim ' . 
