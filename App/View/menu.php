@@ -21,7 +21,7 @@ $atividadesAtivas = Model\Atividade::carregar($_SESSION['usuID'], true);
     <?php include 'html' . DIRECTORY_SEPARATOR . 'menu.php'; ?>
     <div class="w3-container w3-card-4">
         <h3>Atividades:</h3>
-        <table class='w3-table w3-striped w3-bordered'>
+        <table class='w3-table w3-table-all'>
             <?php
                 foreach ($atividadesAtivas as $atividade)
                 {
@@ -33,7 +33,18 @@ $atividadesAtivas = Model\Atividade::carregar($_SESSION['usuID'], true);
 
                     if (is_array($ultimaAtividade)) {
                         // Montar datas e horas da última atividade
-                        echo $ultimaAtividade['horDataIni'] . ' - ' . $ultimaAtividade['horHoraIni'];
+                        echo ajustarData($ultimaAtividade['horDataIni']) . ' - ' . $ultimaAtividade['horHoraIni'];
+
+                        if ($atividade['atvStatus'] == 0) {
+                            echo '&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp; ' . 
+                                  ajustarData($ultimaAtividade['horDataFim']) . ' - ' . $ultimaAtividade['horHoraFim'];
+
+                            // Contabilizar o tempo da atividade (não o total, mas a última vez)
+                            echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+                            echo 'Tempo parcial: ' . contabilizarTempo($ultimaAtividade);
+                        }
+
+                        $horID = $ultimaAtividade['horID'];
                     } else {
                         // Ainda não teve horário para essa Atividade
                         echo '<i>atividade não iniciada ainda...</i>';
@@ -41,20 +52,26 @@ $atividadesAtivas = Model\Atividade::carregar($_SESSION['usuID'], true);
 
                     echo '</td>';
 
-                    /**
-                     * Aqui irei colocar os botões para iniciar ou parar a atividade.
-                     * Falta importar o jQuery para fazer esse controle usando Ajax, onde
-                     * apenas algumas informações da tela serão alteradas quando uma atividade
-                     * for iniciada ou parada.
-                     */
+                    if ($atividade['atvStatus'] == 0) {
+                        // O relógio está parado
+                        echo '<td>';
+                        echo '<form method="post" action="principal.php?control=horario&action=iniciar">';
+                            echo '<input type="hidden" name="atvID" value="' . $atividade['atvID'] . '">';
+                            echo '<input type="submit" value="Iniciar" class="w3-button w3-small w3-blue">';
+                        echo '</form>';
+                        echo '</td>';
+                    } else {
+                        // Relógio iniciado
+                        echo '<td>';
+                        echo '<form method="post" action="principal.php?control=horario&action=parar">';
+                            echo '<input type="hidden" name="atvID" value="' . $atividade['atvID'] . '">';
+                            echo '<input type="hidden" name="horID" value="' . $horID . '">';
+                            echo '<input type="submit" value="Parar" class="w3-button w3-small w3-blue">';
+                        echo '</form>';
+                        echo '</td>';
+                    }
 
-                    echo '<td>';
-                    echo '<form method="post" action="principal.php?control=atividade&action=cadAtividade">';
-                        echo '<input type="hidden" name="atvID" value="' . $atividade['atvID'] . '">';
-                        echo '<input type="submit" value="Editar" class="w3-button w3-small w3-blue">';
-                    echo '</form>';
-                    echo '</td>';
-                    echo '</tr><hr>';
+                    echo '</tr>';
                 }
             ?>
         </table>
