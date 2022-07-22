@@ -1,9 +1,16 @@
 # Sistema simples de Atividades
 
 Sistema desenvolvido para o cadastro de atividades, para registro de início e fim, contabilizando o tempo de cada uma.
+Este sistema tem por objetivo a contagem de tempo em horas de tarefas, estudos, compromissos, e demais atividades que se queira 
+ter um resultado com relação ao tempo desenvolvido na mesma.
 
-Estou utilizando PHP com o padrão MVC para facilitar a organização e manutenção do código. Não estou focando no visual do sistema, inicialmente estou implementando funcionalidades e procurando deixar o código mais organizado possível para facilitar a leitura e as futuras implementações.
+Estou utilizando PHP com o padrão MVC para facilitar a organização e manutenção do código. Neste sistema eu não estou usando ORM por tratar-se 
+de um sistema pequeno. Não estou utilizando frameworks.
 
-Esse sistema ainda está em desenvolvimento. Estou adaptando a mesma visão aplicada no sistema de Abastecimento para desenvolver mais rapidamente o projeto. Não estou utilizando frameworks.
+### Sistema descontinuado
 
-Estou usando o CSS do site W3Schools (w3.css), e estarei usando o jQuery para manipulações na parte do cliente (frontend). Para a parte do servidor (backend) estou usando PHP no padrão MVC, com Orientação a Objetos, e o banco de dados é o MySQL.
+Esse sistema não está mais sendo desenvolvido, pois está com uma abordagem mais antiga, como classes abstratas, sem uso de ORM para acesso 
+ao banco, organização mais antiga também.
+
+Os projetos mais atuais são "Anotações" e "Portaria", que contam com uma abordagem melhor com relação a arquitetura e organização 
+dos projetos, além de testes unitários.
